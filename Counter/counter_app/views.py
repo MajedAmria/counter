@@ -1,9 +1,11 @@
 from http.client import HTTPResponse
 from django.shortcuts import render
 
-def display():
-
-    return HTTPResponse("hello")
 
 def show(request):
-    request.se
+    if request.session:
+        request.session['time'] +=1
+    else:
+        request.session['time'] = 1
+    
+    return render(request, 'index.html')
